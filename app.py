@@ -1,5 +1,5 @@
 from flask import Flask, request, abort
-from linebot.v3 import LineBotApi, WebhookHandler  # 使用 v3 版本的 API
+from linebot import LineBotApi, WebhookHandler  # 使用 v2 版本的 API
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import json
