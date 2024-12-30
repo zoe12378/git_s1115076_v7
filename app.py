@@ -74,10 +74,10 @@ def handle_message(event):
                 )
             else:
                 # 到達結局
-                ending_key = "ending_" + str(user_data[user_id]['choices'][-1])
-                user_data[user_id]['final_ending'] = ending_key
-                ending_text = story['story']['endings'][ending_key]["text"]
-                restart_text = story['story']['endings'][ending_key]["restart"]
+                final_ending_key = "ending_" + str(user_data[user_id]['choices'][-1])
+                user_data[user_id]['final_ending'] = final_ending_key
+                ending_text = story['story']['endings'][final_ending_key]["text"]
+                restart_text = story['story']['endings'][final_ending_key]["restart"]
                 line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text=f"{ending_text}\n\n{restart_text}")
@@ -109,8 +109,6 @@ def handle_postback(event):
     else:
         # 儲存用戶的選擇並繼續
         user_data[user_id]['choices'].append(choice)
-        
-        # 根據用戶選擇更新故事進度
         current_step = len(user_data[user_id]['choices']) + 1
         step = story['story']['steps'].get(str(current_step))
         
@@ -129,18 +127,15 @@ def handle_postback(event):
                 )
             )
         else:
-            # 若無選擇選項，直接進入結局
-            ending_key = "ending_" + str(user_data[user_id]['choices'][-1])
-            final_ending = story['story']['endings'].get(ending_key)
-            
-            if final_ending:
-                user_data[user_id]['final_ending'] = ending_key
-                ending_text = final_ending["text"]
-                restart_text = final_ending["restart"]
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text=f"{ending_text}\n\n{restart_text}")
-                )
+            # 到達結局
+            final_ending_key = "ending_" + str(user_data[user_id]['choices'][-1])
+            user_data[user_id]['final_ending'] = final_ending_key
+            ending_text = story['story']['endings'][final_ending_key]["text"]
+            restart_text = story['story']['endings'][final_ending_key]["restart"]
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=f"{ending_text}\n\n{restart_text}")
+            )
 
 
 if __name__ == "__main__":
