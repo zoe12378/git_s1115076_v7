@@ -3,6 +3,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import json
+import os
 
 app = Flask(__name__)
 
@@ -99,4 +100,5 @@ def send_ending(user_id, ending_key):
     line_bot_api.push_message(user_id, TextSendMessage(text=ending_text))
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
