@@ -1,8 +1,9 @@
 from flask import Flask, request, abort
-from linebot import LineBotApi, WebhookHandler
+from linebot.v3 import LineBotApi, WebhookHandler  # 使用 v3 版本的 API
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import json
+import os
 
 app = Flask(__name__)
 
@@ -41,17 +42,6 @@ def callback():
 def handle_message(event):
     user_id = event.source.user_id
     user_text = event.message.text.strip()
-
-    # 檢查是否要求重新開始
-    if user_text.lower() in ['重新開始', 'restart', '重來']:
-        user_data[user_id] = {
-            'choices': [],
-            'current_step': '1',
-            'final_ending': None
-        }
-        line_bot_api.push_message(user_id, TextSendMessage(text="故事已重新開始！"))
-        send_story_step(user_id, '1')
-        return
 
     if user_id not in user_data:
         # 初次互動，顯示引言並進入第一步
@@ -94,19 +84,11 @@ def handle_choice(user_id, current_step, user_text):
     user_choice = user_text.strip()
 
     if user_choice in step_data['choices']:
-        if step_data['next_step'][user_choice] == "restart":
-            # 重置用戶進度
-            user_data[user_id] = {
-                'choices': [],
-                'current_step': '1',
-                'final_ending': None
-            }
-            return '1'
-        else:
-            # 儲存用戶選擇
-            next_step = step_data['next_step'].get(user_choice, None)
-            user_data[user_id]['current_step'] = next_step
-            return next_step
+        # 儲存用戶選擇
+        user_data[user_id]['choices'].append(user_choice)
+        next_step = step_data['next_step'].get(user_choice, None)
+        user_data[user_id]['current_step'] = next_step
+        return next_step
     else:
         # 無效選擇，重新顯示選項
         return current_step
@@ -118,4 +100,6 @@ def send_ending(user_id, ending_key):
     line_bot_api.push_message(user_id, TextSendMessage(text=ending_text))
 
 if __name__ == "__main__":
-    app.run()
+    # 使用 Render 部署時指定 host 和 port
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
