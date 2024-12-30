@@ -128,7 +128,7 @@ def handle_postback(event):
             )
         else:
             # 若無選擇選項，直接進入結局
-            ending_key = step.get("next_step", {}).get("default") or "ending_1"
+            ending_key = "ending_" + str(user_data[user_id]['choices'][-1])
             final_ending = story['story']['endings'].get(ending_key)
             
             if final_ending:
