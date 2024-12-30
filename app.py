@@ -134,6 +134,6 @@ def handle_postback(event):
                 TextSendMessage(text=f"{ending_text}\n\n{restart_text}")
             )
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    # 指定端口為 8080
+    app.run(debug=True, host="0.0.0.0", port=8080)
