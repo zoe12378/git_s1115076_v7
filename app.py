@@ -54,8 +54,10 @@ def handle_message(event):
         )
     else:
         if user_data[user_id]['final_ending'] is None:
+            # 根據使用者的選擇來確定當前步驟
             current_step = len(user_data[user_id]['choices']) + 1
             step = story['story']['steps'].get(str(current_step))
+            
             if step:
                 prompt = step['prompt']
                 choices = step['choices']
@@ -109,6 +111,7 @@ def handle_postback(event):
         user_data[user_id]['choices'].append(choice)
         current_step = len(user_data[user_id]['choices']) + 1
         step = story['story']['steps'].get(str(current_step))
+        
         if step:
             prompt = step['prompt']
             choices = step['choices']
@@ -133,6 +136,7 @@ def handle_postback(event):
                 event.reply_token,
                 TextSendMessage(text=f"{ending_text}\n\n{restart_text}")
             )
+
 
 if __name__ == "__main__":
     # 指定端口為 8080
