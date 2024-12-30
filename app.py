@@ -109,6 +109,8 @@ def handle_postback(event):
     else:
         # 儲存用戶的選擇並繼續
         user_data[user_id]['choices'].append(choice)
+        
+        # 根據用戶選擇更新故事進度
         current_step = len(user_data[user_id]['choices']) + 1
         step = story['story']['steps'].get(str(current_step))
         
