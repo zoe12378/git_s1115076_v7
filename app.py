@@ -72,8 +72,9 @@ def send_story_step(user_id, step_id):
         line_bot_api.push_message(user_id, TextSendMessage(text=f"{prompt}\n\n{choices_text}"))
     else:
         # 沒有選項則進入結局
-        ending_key = story_data['story']['steps'][step_id]['next_step']['default']
-        send_ending(user_id, ending_key)
+        next_step = step_data['next_step'].get('default', None)
+        if next_step:
+            send_ending(user_id, next_step)
 
 def handle_choice(user_id, current_step, user_text):
     """處理用戶選擇，返回下一步的 ID。"""
