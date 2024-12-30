@@ -81,8 +81,9 @@
     }
   },
   "user_data": {
-    "user_id": "user123",
-    "choices": [],
-    "final_ending": null
+    "user123": {
+      "choices": [],
+      "final_ending": null
+    }
   }
 }
