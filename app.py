@@ -76,7 +76,7 @@ def handle_message(event):
                 user_states[user_id] = 'give_up'
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="你選擇返回入口，錯過了探索的機會。結局：安全的放棄。\n\n輸入 '重新' 開始新的一局！")
+                    TextSendMessage(text="你選擇返回入口，錯過了探索的機會。\n結局：安全的放棄。\n\n輸入 '重新' 開始新的一局！")
                 )
         elif state == 'bright_path':
             if text == '1':
@@ -95,23 +95,23 @@ def handle_message(event):
             if text == '1':
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="你成功拿到了寶藏，但地板完全塌陷，你被困在裡面。結局：寶藏的囚徒。\n\n輸入 '重新' 開始新的一局！")
+                    TextSendMessage(text="你成功拿到了寶藏，但地板完全塌陷，你被困在裡面。\n結局：寶藏的囚徒。\n\n輸入 '重新' 開始新的一局！")
                 )
             elif text == '2':
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="你選擇逃跑，成功離開了寶藏房間，但錯過了寶藏。結局：空手而歸。\n\n輸入 '重新' 開始新的一局！")
+                    TextSendMessage(text="你選擇逃跑，成功離開了寶藏房間，但錯過了寶藏。\n結局：空手而歸。\n\n輸入 '重新' 開始新的一局！")
                 )
         elif state == 'dark_cave':
             if text == '1':
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="你勇敢地面對怪物，但被打敗了。結局：英勇的犧牲。\n\n輸入 '重新' 開始新的一局！")
+                    TextSendMessage(text="你勇敢地面對怪物，但被打敗了。\n結局：英勇的犧牲。\n\n輸入 '重新' 開始新的一局！")
                 )
             elif text == '2':
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="你成功逃脫，避免了死亡的威脅。結局：驚險逃生。\n\n輸入 '重新' 開始新的一局！")
+                    TextSendMessage(text="你成功逃脫，避免了死亡的威脅。\n結局：驚險逃生。\n\n輸入 '重新' 開始新的一局！")
                 )
 
 
