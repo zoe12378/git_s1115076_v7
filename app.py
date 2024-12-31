@@ -76,7 +76,7 @@ def handle_message(event):
                 user_states[user_id] = 'give_up'
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="你迅速返回了入口，深吸了一口氣，雖然安全了，但失去了探索的機會。你站在原地，對自己是否應該再次踏入森林感到猶豫\n\n結局：\n你選擇了安全地返回入口，避免了任何危險。然而，內心深處你始終感到遺憾，懷疑如果當初勇敢一些，是否能發現更大的世界\n\n輸入【重新】開始新的一局！")
+                    TextSendMessage(text="你迅速返回了入口，深吸了一口氣，雖然安全了，但失去了探索的機會。你站在原地，內心深處你始終感到遺憾，懷疑如果當初勇敢一些，是否能發現更大的世界\n\n輸入【重新】開始新的一局！")
                 )
         elif state == 'bright_path':
             if text == '1':
@@ -89,7 +89,7 @@ def handle_message(event):
                 user_states[user_id] = 'bright_exit'
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="明亮的出口通向一片廣闊的田野，這裡鮮花盛開，鳥兒鳴叫，一切都顯得那麼平靜。你感受到前所未有的舒適和自由，彷彿找到了心靈的歸宿\n\n結局：\n你選擇了通往田野的道路，過上了簡單而快樂的生活。或許你沒有獲得寶藏，但內心的平靜讓你無比滿足\n\n輸入【重新】開始新的一局！")
+                    TextSendMessage(text="明亮的出口通向一片廣闊的田野，這裡鮮花盛開，鳥兒鳴叫，一切都顯得那麼平靜。或許你沒有獲得寶藏，但內心的平靜讓你無比滿足\n\n輸入【重新】開始新的一局！")
                 )
         elif state == 'treasure_room':
             if text == '1':
