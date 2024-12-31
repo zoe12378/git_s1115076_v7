@@ -37,6 +37,17 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text="你是一位探險家，進入了一座神秘的森林，面臨著未知的挑戰。據說森林的深處藏著一個無價的寶藏，但也隱藏著致命的危險。你的每一個選擇都將改變你的命運，最終決定你是成為傳奇，還是空手而回。")
         )
+    user_states[user_id] = 'start'
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="你走進森林深處，面前出現了兩條截然不同的小路。一條被茂密的藤蔓覆蓋，顯得幽深而神秘；另一條光線充足，看起來似乎較為安全。")
+    )
+    # 場景1
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="請輸入1 or 2來代表您的選擇\n\n選項1：走進藤蔓覆蓋的小路\n選項2:選擇光線充足的小路")
+        )
+    state = user_states[user_id]
     # 重置遊戲功能
     if text == "重新":
         user_states[user_id] = 'start'
@@ -52,20 +63,17 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text="你走進森林深處，面前出現了兩條截然不同的小路。一條被茂密的藤蔓覆蓋，顯得幽深而神秘；另一條光線充足，看起來似乎較為安全。")
         )
+        # 場景1
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="請輸入1 or 2來代表您的選擇\n\n選項1：走進藤蔓覆蓋的小路\n選項2:選擇光線充足的小路")
+            )
+        state = user_states[user_id]
         return
 
 
-    user_states[user_id] = 'start'
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text="你走進森林深處，面前出現了兩條截然不同的小路。一條被茂密的藤蔓覆蓋，顯得幽深而神秘；另一條光線充足，看起來似乎較為安全。")
-    )
-    # 場景1
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text="請輸入1 or 2來代表您的選擇\n\n選項1：走進藤蔓覆蓋的小路\n選項2:選擇光線充足的小路")
-        )
-    state = user_states[user_id]
+    
+    
     if state == 'start':
         # 選擇 選項1 藤蔓覆蓋的小路
         if text == '1':
