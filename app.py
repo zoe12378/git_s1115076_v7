@@ -86,7 +86,7 @@ def handle_message(event):
                             original_content_url='https://i.imgur.com/VWvg813.jpeg',
                             preview_image_url='https://i.imgur.com/VWvg813.jpeg'
                         ),
-                        TextSendMessage(text="你將會\n\n1：繼續前行，探索這條神秘的小路\n2：因感到不安，決定返回入口\n(請輸入1 or 2)"),
+                        TextSendMessage(text="你將會\n\n1：繼續前行，探索這條神秘的小路\n2：因感到不安，決定返回入口\n(請輸入1 or 2)")
                     ]
                     
                 )
@@ -113,7 +113,7 @@ def handle_message(event):
                 line_bot_api.reply_message(
                     event.reply_token,
                     [
-                        TextSendMessage(text="你進入了一個巨大的房間，房間中央擺滿了金光閃閃的寶藏。然而，當你踏進去時，地板開始發出刺耳的聲音，似乎隨時會崩塌").
+                        TextSendMessage(text="你進入了一個巨大的房間，房間中央擺滿了金光閃閃的寶藏。然而，當你踏進去時，地板開始發出刺耳的聲音，似乎隨時會崩塌"),
                         ImageSendMessage(
                             original_content_url='https://i.imgur.com/QtFgfPE.jpeg',
                             preview_image_url='https://i.imgur.com/QtFgfPE.jpeg'
@@ -142,7 +142,7 @@ def handle_message(event):
                 line_bot_api.reply_message(
                     event.reply_token,
                     [
-                        TextSendMessage(text="你進入了一個巨大的房間，房間中央擺滿了金光閃閃的寶藏。然而，當你踏進去時，地板開始發出刺耳的聲音，似乎隨時會崩塌").
+                        TextSendMessage(text="你進入了一個巨大的房間，房間中央擺滿了金光閃閃的寶藏。然而，當你踏進去時，地板開始發出刺耳的聲音，似乎隨時會崩塌"),
                         ImageSendMessage(
                             original_content_url='https://i.imgur.com/QtFgfPE.jpeg',
                             preview_image_url='https://i.imgur.com/QtFgfPE.jpeg'
