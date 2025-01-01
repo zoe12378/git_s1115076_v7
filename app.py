@@ -41,6 +41,14 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text="新的一局開始！\n\n你是一位探險家，進入了一座神秘的森林，面臨著未知的挑戰。據說森林的深處藏著一個無價的寶藏，但也隱藏著致命的危險。你的每一個選擇都將改變你的命運，最終決定你是成為傳奇，還是空手而回\n\n你走進森林深處，面前出現了兩條截然不同的小路，你選擇\n\n1：走藤蔓覆蓋的小路\n2：走光線充足的小路\n(請輸入1 or 2)")
         )
+        # 傳送圖片訊息
+        line_bot_api.reply_message(
+            event.reply_token,
+            ImageSendMessage(
+                original_content_url='https://i.imgur.com/kwwYwgQ.jpeg',
+                preview_image_url='https://i.imgur.com/kwwYwgQ.jpeg'
+            )
+        )
         return
 
     if user_id not in user_states:
@@ -49,6 +57,14 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="你是一位探險家，進入了一座神秘的森林，面臨著未知的挑戰。據說森林的深處藏著一個無價的寶藏，但也隱藏著致命的危險。你的每一個選擇都將改變你的命運，最終決定你是成為傳奇，還是空手而回\n\n你走進森林深處，面前出現了兩條截然不同的小路，你選擇\n\n1：走藤蔓覆蓋的小路\n2：走光線充足的小路\n(請輸入1 or 2)")
+        )
+        # 傳送圖片訊息
+        line_bot_api.reply_message(
+            event.reply_token,
+            ImageSendMessage(
+                original_content_url='https://i.imgur.com/kwwYwgQ.jpeg',
+                preview_image_url='https://i.imgur.com/kwwYwgQ.jpeg'
+            )
         )
     else:
         state = user_states[user_id]
