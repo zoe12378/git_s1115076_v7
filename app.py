@@ -42,10 +42,19 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             [
-                TextSendMessage(text="新的一局開始！\n\n你是一位探險家，進入了一座神秘的森林，面臨著未知的挑戰。據說森林的深處藏著一個無價的寶藏，但也隱藏著致命的危險。你的每一個選擇都將改變你的命運，最終決定你是成為傳奇，還是空手而回\n\n你走進森林深處，面前出現了兩條截然不同的小路，你選擇\n\n1：走藤蔓覆蓋的小路\n2：走光線充足的小路\n(請輸入1 or 2)"),
+                TextSendMessage(text="新的一局開始！\n\n你是一位探險家，進入了一座神秘的森林，面臨著未知的挑戰。據說森林的深處藏著一個無價的寶藏，但也隱藏著致命的危險。你的每一個選擇都將改變你的命運，最終決定你是成為傳奇，還是空手而回"),
                 ImageSendMessage(
                     original_content_url='https://i.imgur.com/kwwYwgQ.jpeg',
                     preview_image_url='https://i.imgur.com/kwwYwgQ.jpeg'
+                ),
+                TextSendMessage(text="你走進森林深處，面前出現了兩條截然不同的小路，你選擇\n\n1：走藤蔓覆蓋的小路\n2：走光線充足的小路\n(請輸入1 or 2)"),
+                ImageSendMessage(
+                    original_content_url='https://i.imgur.com/rez91cy.jpeg',
+                    preview_image_url='https://i.imgur.com/rez91cy.jpeg'
+                ),
+                ImageSendMessage(
+                    original_content_url='https://i.imgur.com/rIC7kfc.jpeg',
+                    preview_image_url='https://i.imgur.com/rIC7kfc.jpeg'
                 )
             ]
         )
@@ -134,8 +143,16 @@ def handle_message(event):
                 user_states[user_id] = 'give_up'
                 line_bot_api.reply_message(
                     event.reply_token,
-                    TextSendMessage(text="你迅速返回了入口，深吸了一口氣，雖然安全了，但失去了探索的機會。你站在原地，內心深處你始終感到遺憾，懷疑如果當初勇敢一些，是否能發現更大的世界\n\n輸入【重新】開始新的一局！")
+                    [
+                        TextSendMessage(text="你迅速返回了入口，深吸了一口氣，雖然安全了，但失去了探索的機會。你站在原地，內心深處你始終感到遺憾，懷疑如果當初勇敢一些，是否能發現更大的世界\n\n輸入【重新】開始新的一局！"),
+                        ImageSendMessage(
+                            original_content_url='https://i.imgur.com/UeCCWtA.jpeg',
+                            preview_image_url='https://i.imgur.com/UeCCWtA.jpeg'
+                        )
+                    ]
+                    
                 )
+                
         elif state == 'bright_path':
             if text == '1':
                 user_states[user_id] = 'dark_cave'
